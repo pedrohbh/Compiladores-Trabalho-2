@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include "Parser.h"
 %}
 
 digito [0-9]
