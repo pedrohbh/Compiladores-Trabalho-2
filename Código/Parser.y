@@ -75,6 +75,10 @@ input_call: INPUT LPAREN RPAREN;
 
 output_call: OUTPUT LPAREN arith_expr RPAREN;
 
+write_call: WRITE LPAREN STRING RPAREN;
+
+user_func_call: ID LPAREN opt_arg_list RPAREN;
+
 opt_arg_list: /* VAZIO */ | arg_list;
 
 arg_list: arg_list COMMA arith_expr | arith_expr;
