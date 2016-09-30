@@ -24,6 +24,9 @@ void yyerror(char const *s);
 %token LT LE GT GE EQ NEQ
 %token ASSIGN SEMI COMMA LPAREN RPAREN LBRACK RBRACK LBRACE RBRACE
 %token STRING NUM ID UNKNOWN
+%left LT LE GT GE EQ NEQ
+%left PLUS MINUS
+%left TIMES OVER
 
 %%
 
@@ -83,11 +86,10 @@ opt_arg_list: /* VAZIO */ | arg_list;
 
 arg_list: arg_list COMMA arith_expr | arith_expr;
 
-bool_expr: arith_expr bool_op arith_op;
+bool_expr: arith_expr bool_op arith_expr;
 
 bool_op: LT | LE | GT | GE | EQ | NEQ;
 
-arith_expr: arith_expr arith_op arith_expr | LPAREN arith_expr RPAREN | lval | input_call | user_func_call | NUM;
+arith_expr: arith_expr PLUS arith_expr | arith_expr MINUS arith_expr | arith_expr TIMES arith_expr | arith_expr OVER arith_expr | LPAREN arith_expr RPAREN | lval | input_call | user_func_call | NUM;
 
-arith_op: PLUS | MINUS | TIMES | OVER;
 
