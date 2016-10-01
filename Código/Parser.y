@@ -17,6 +17,8 @@
 
 int yylex(void);
 void yyerror(char const *s);
+
+extern int yylineno;
 %}
 
 %token IF ELSE INPUT INT OUTPUT RETURN VOID WHILE WRITE
@@ -94,13 +96,16 @@ arith_expr: arith_expr PLUS arith_expr | arith_expr MINUS arith_expr | arith_exp
 
 %%
 
+void yyerror( char const *s )
+{
+	printf("PARSE ERROR (%d): %s\n", yylineno, s);
+}
+
 int main()
 {
 	int resultado = yyparse();
 	if ( resultado == 0 )
 		printf("PARSE SUCESSFUL!\n");
-	else
-		printf("Parser failed...\n");
 
 	return 0;
 }
