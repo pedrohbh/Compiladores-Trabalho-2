@@ -92,4 +92,15 @@ bool_op: LT | LE | GT | GE | EQ | NEQ;
 
 arith_expr: arith_expr PLUS arith_expr | arith_expr MINUS arith_expr | arith_expr TIMES arith_expr | arith_expr OVER arith_expr | LPAREN arith_expr RPAREN | lval | input_call | user_func_call | NUM;
 
+%%
 
+int main()
+{
+	int resultado = yyparse();
+	if ( resultado == 0 )
+		printf("PARSE SUCESSFUL!\n");
+	else
+		printf("Parser failed...\n");
+
+	return 0;
+}

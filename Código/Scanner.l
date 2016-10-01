@@ -1,3 +1,8 @@
+%option outfile="Scanner.c"
+%option noyywrap
+%option nounput
+%option noinput
+
 %{
 #include <stdio.h>
 #include "Parser.h"
