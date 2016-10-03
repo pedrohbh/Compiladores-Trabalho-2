@@ -5,6 +5,7 @@
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "Parser.h"
 %}
 
@@ -58,6 +59,6 @@ whitespace [ \t]+
 {identificador} { return ID; }
 {newline} { yylineno++; }
 {whitespace} { /* FAZ NADA */ }
-. { return UNKNOWN; }
+. { printf("SCANNING ERROR (%d): Unknown symbol %s\n", yylineno, yytext ); exit( 1 ); }
 
 %%
